@@ -10,13 +10,13 @@ list-style: none;
 </style>
 </head>
 <body>
-<h1>Thêm DL vào table product</h1>
+<h1>Insert Data into table Product</h1>
     <ul>
         <form name="InsertData" action="InsertData.php" method="POST" >
-            <li>Pruduct id:</li><li><input type="text" name="product_id" /></li>
-            <li>Product_name:</li><li><input type="text" name="product_name" /></li>
-            <li>NSX:</li><li><input type="date" name="nsx" /></li>
-            <li><input type="submit" value="Thêm DL" /></li>
+            <li>Product_ID:</li><li><input type="text" name="product_id" /></li>
+            <li>Product_Name:</li><li><input type="text" name="product_name" /></li>
+            <li>ReleaseDate</li><li><input type="date" name="release_date" /></li>
+            <li><input type="submit" value="Submit" /></li>
         </form>
     </ul>
 
@@ -27,7 +27,7 @@ if (empty(getenv("DATABASE_URL"))){
 }  else {
    $db = parse_url(getenv("DATABASE_URL"));
    $pdo = new PDO("pgsql:" . sprintf(
-    "host=ec2-34-197-141-7.compute-1.amazonaws.com;port=5432;user=swlkkbqcrglzzg;password=65232542ac11465842a449d6a73c2a81eba57efff6d6cfae29c2f688246681ca;dbname=d13sqb8ctk5ua3",
+    "host=ec2-34-200-72-77.compute-1.amazonaws.com;port=5432;user=ounxycojxvijaq;password=8944c1cb6cb4c6192ecbfeddda74124479826aae73eebfa999399bf06b44be2c",
         $db["port"],
         $db["user"],
         $db["pass"],
@@ -48,13 +48,13 @@ if($pdo === false){
 //$stmt->bindParam(':class', 'GCD018');
 //$stmt->execute();
 //$sql = "INSERT INTO student(stuid, fname, email, classname) VALUES('SV02', 'Hong Thanh','thanhh@fpt.edu.vn','GCD018')";
-$sql = "INSERT INTO product(product_id, product_name, nsx) VALUES ('$_POST[product_id]','$_POST[product_name]', '$_POST[nsx]')";
+$sql = "INSERT INTO Products(ProductId, ProductName, ReleaseDate) VALUES ('$_POST[product_id]','$_POST[product_name]', '$_POST[release_date]')";
 $stmt = $pdo->prepare($sql);
 
     if($stmt->execute() == TRUE){
         echo "Record inserted successfully.";
     } else {
-        echo "Error inserting record: ";
+        echo "Error inserting record.";
     }
 
 ?>

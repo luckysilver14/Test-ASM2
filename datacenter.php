@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./mainstyle.css"/>
-    <title>ATN data center</title>
+    <title>ATN Database</title>
 </head>
 <body>
         <?php
@@ -15,7 +15,7 @@
             echo getenv("dbname");
         $db = parse_url(getenv("DATABASE_URL"));
         $pdo = new PDO("pgsql:" . sprintf(
-                "host=ec2-3-216-129-140.compute-1.amazonaws.com;port=5432;user=ejfbherakktsuo;password=77a12eb6182890c121f787f8b000a159b74b88cd554011ec4c08173c230c667e;dbname=dct0jqk5rbgl75",
+                "host=ec2-34-200-72-77.compute-1.amazonaws.com;port=5432;user=ounxycojxvijaq;password=8944c1cb6cb4c6192ecbfeddda74124479826aae73eebfa999399bf06b44be2c",
                 $db["host"],
                 $db["port"],
                 $db["user"],
@@ -24,31 +24,31 @@
         ));
         }  
 
-        $sql = "SELECT * FROM product ORDER BY product_id";
+        $sql = "SELECT * FROM Products ORDER BY ProductID";
         $stmt = $pdo->prepare($sql);
         $stmt->setFetchMode(PDO::FETCH_ASSOC);
         $stmt->execute();
         $resultSet = $stmt->fetchAll();
     ?>
-    <h1>ATN cơ sở dữ liệu</h1>
-    <button onclick="location.href='index.php'">Trờ về trang chủ</button>
+    <h1>ATN's Database</h1>
+    <button onclick="location.href='index.php'">Back to homepage</button>
     <div class="container">
         <div class="grid-view">
             <div class="grid-item">
                 <img src="./database.png"/>
-                <a href="#" onClick="displayData()"><b>Xem dữ liệu hóa đơn</b></a>
+                <a href="#" onClick="displayData()"><b>Products data</b></a>
             </div>
             <div class="grid-item">
                 <img src="./database.png" />
-                <a href="./InsertData.php" target="framename"><b>Thêm DL</b></a>
+                <a href="./InsertData.php" target="framename"><b>Add product data</b></a>
             </div>
             <div class="grid-item">
                 <img src="./database.png"/>
-                <a href="./DeleteData.php" target="framename"><b>Xóa DL</b></a>
+                <a href="./DeleteData.php" target="framename"><b>Delete data</b></a>
             </div>
             <div class="grid-item">
                 <img src="./database.png"/>
-                <a href="UpdateData.php" target="framename"><b>Cập nhật DL</b></a>
+                <a href="UpdateData.php" target="framename"><b>Update data</b></a>
             </div>
             <div id ="displaychange" class="grid-item">
                 <table class="table table-bordered table-condensed">
@@ -56,7 +56,7 @@
                     <tr>
                         <th>Product_ID</th>
                         <th>Product_name</th>
-                        <th>NSX</th>
+                        <th>Release_Date</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -69,7 +69,7 @@
                     <tr>
                         <td scope="row"><?php echo $row['product_id'] ?></td>
                         <td><?php echo $row['product_name'] ?></td>
-                        <td><?php echo $row['nsx'] ?></td>     
+                        <td><?php echo $row['release_date'] ?></td>     
                     </tr>
                     
                     <?php

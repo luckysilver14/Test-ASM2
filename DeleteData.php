@@ -2,13 +2,13 @@
 <html>
 <body>
 
-<h1>Xóa DL</h1>
+<h1>Delete Data</h1>
 
 <h4>ID SP cần xóa</h4>
 
 <form name="delete" method="POST" action="DeleteData.php">
-    <lable for="id">ID Sản Phẩm</label><input type="text" name="id" placeholder="nhập id sp cần xóa"/><br>
-    <input type="submit" value="Xóa">
+    <lable for="id">Product ID</label><input type="text" name="id" placeholder="Enter ID of the product that you want to delete"/><br>
+    <input type="submit" value="Delete">
 </form>
 
 <?php
@@ -25,7 +25,7 @@ if (empty(getenv("DATABASE_URL"))){
      
    $db = parse_url(getenv("DATABASE_URL"));
    $pdo = new PDO("pgsql:" . sprintf(
-    "host=ec2-34-197-141-7.compute-1.amazonaws.com;port=5432;user=swlkkbqcrglzzg;password=65232542ac11465842a449d6a73c2a81eba57efff6d6cfae29c2f688246681ca;dbname=d13sqb8ctk5ua3",
+    "host=ec2-34-200-72-77.compute-1.amazonaws.com;port=5432;user=ounxycojxvijaq;password=8944c1cb6cb4c6192ecbfeddda74124479826aae73eebfa999399bf06b44be2c",
         $db["host"],
         $db["port"],
         $db["user"],
@@ -34,7 +34,7 @@ if (empty(getenv("DATABASE_URL"))){
    ));
 }  
 
-$sql = "DELETE FROM product WHERE product_id = '$_POST[id]'";
+$sql = "DELETE FROM Products WHERE ProductID = '$_POST[id]'";
 $stmt = $pdo->prepare($sql);
 if($stmt->execute() == TRUE){
     echo "deleted successfully.";
