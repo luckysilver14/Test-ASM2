@@ -53,7 +53,7 @@
     </div>
     <div class="footer">
         <h2>Assignment 2 Online Store Demo</h2>
-        <p>Truong Vi Kiet</p>
+        <p> Creator: Truong Vi Kiet</p>
     </div>
 </body>
 </html>

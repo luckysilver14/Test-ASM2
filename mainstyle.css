@@ -74,7 +74,7 @@ h1 {
     object-fit: cover;
 }
 .grid-item a {
-    background-color: #4CAF50;
+    background-color: rgb(177, 45, 177);
     border: none;
     color: white;
     padding: 15px 32px;
